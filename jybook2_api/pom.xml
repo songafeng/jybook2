@@ -24,9 +24,82 @@
 
   </dependencies>
 
+
+  <profiles>
+    <profile>
+      <!-- 本地开发环境 -->
+      <id>dev</id>
+      <properties>
+        <!-- 这里的属性名是随便取的，可以在后续配置中引用 -->
+        <profiles.dir>dev</profiles.dir>
+      </properties>
+      <!-- 是否默认 -->
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <!-- 本地测试环境 -->
+      <id>test</id>
+      <properties>
+        <!-- 这里的属性名是随便取的，可以在后续配置中引用 -->
+        <profiles.dir>test</profiles.dir>
+      </properties>
+    </profile>
+    <profile>
+      <!-- 预发布环境 -->
+      <id>pre-pro</id>
+      <properties>
+        <profiles.dir>pre-pro</profiles.dir>
+      </properties>
+    </profile>
+    <profile>
+      <!-- 生产环境 -->
+      <id>pro</id>
+      <properties>
+        <profiles.dir>pro</profiles.dir>
+      </properties>
+    </profile>
+  </profiles>
+
+
   <build>
-    <finalName>jybook2_api</finalName>
+
+    <!--<finalName>jybook2_api</finalName>-->
+    <resources>
+      <!-- 这里的resource配置的是需要导入到项目的资源文件夹 -->
+      <resource>
+        <!--
+            资源文件位置src/main/resources/,这下面的资源文件的${}会全部被替换成filter中的标签内容。
+            directory指定的value会作为classes的资源跟目录，
+            比如指定:src/main/resources/，则classes下会出现jdbc等包，
+            若指定:src/main/resources/jdbc/，则classes下直接出现jdbc包下的文件，不会额外出现jdbc等其他包结构。因为他把jdbc作为了根目录
+        -->
+        <directory>src/main/resources</directory>
+      </resource>
+      <!-- 这里的${profiles.dir}是你上面配置的属性值，用于动态替换，比如打包的时候输入的是-Pdev则这里就是的${profiles.dir}就是dev的值 -->
+      <resource>
+        <directory>src/main/resources-profile/${profiles.dir}</directory>
+        <!-- 在某个resource中如果设置filtering为true，将会根据输入参数动态修改相关内容。 -->
+        <filtering>true</filtering>
+        <!--&lt;!&ndash; 排除环境的配置资源根目录使用单独的资源目录来指定 &ndash;&gt;-->
+        <excludes>
+          <exclude>dev/*</exclude>
+          <exclude>test/*</exclude>
+          <exclude>pro/*</exclude>
+          <exclude>pre-pro/*</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
+      <plugin>
+        <!-- 处理资源文件。默认的主资源文件目录是src/main/resources，可以在此指定额外的资源文件目录 -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

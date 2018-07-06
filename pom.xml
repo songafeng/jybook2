@@ -19,8 +19,9 @@
   <properties>
     <MAVEN_OPTS>-Xmx512m</MAVEN_OPTS>
     <project.environment>1.0-SNAPSHOT</project.environment>
-    <package.environment>dev</package.environment>
-    <distribution.repository.url>http://192.168.137.105:8081/repository</distribution.repository.url>
+    <profiles.dir>test</profiles.dir>
+    <!--<package.environment>dev</package.environment>-->
+    <!--<distribution.repository.url>http://192.168.137.105:8081/repository</distribution.repository.url>-->
   </properties>
   <build>
     <plugins>

@@ -16,18 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`jy` /*!40100 DEFAULT CHARACTER SET lati
 
 USE `jy`;
 
-/*Table structure for table `hibernate_sequence` */
-
-DROP TABLE IF EXISTS `hibernate_sequence`;
-
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `hibernate_sequence` */
-
-insert  into `hibernate_sequence`(`next_val`) values (1);
-
 /*Table structure for table `jy_book` */
 
 DROP TABLE IF EXISTS `jy_book`;
@@ -81,7 +69,7 @@ CREATE TABLE `jy_image` (
   `d_createtime` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `n_status` int(11) DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`n_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `jy_image` */
 

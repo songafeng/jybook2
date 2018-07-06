@@ -12,7 +12,7 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:META-INF/applicationContext.xml
+      classpath:appcontext/app-spring-config-jybook.xml
     </param-value>
   </context-param>
 
@@ -23,7 +23,7 @@
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <!-- 此处指向的的是SpringMVC的配置文件 -->
-      <param-value>classpath:META-INF/spring-mvc.xml</param-value>
+      <param-value>classpath:appcontext/app-spring-mvc-jybook.xml</param-value>
     </init-param>
     <!--配置容器在启动的时候就加载这个servlet并实例化-->
     <load-on-startup>1</load-on-startup>
